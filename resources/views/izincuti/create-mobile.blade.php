@@ -35,16 +35,19 @@
                     @csrf
 
                     <input type="text" class="feedback-input dari" name="dari" placeholder="Dari" id="datePicker" />
-                    <input type="text" class="feedback-input sampai" name="sampai" placeholder="Sampai" id="datePicker2" />
+                    <input type="text" class="feedback-input sampai" name="sampai" placeholder="Sampai"
+                        id="datePicker2" />
                     <select name="kode_cuti" id="kode_cuti" class="feedback-input kode_cuti">
                         <option value="">Jenis Cuti</option>
                         @foreach ($jenis_cuti as $d)
                             <option value="{{ $d->kode_cuti }}">{{ $d->jenis_cuti }} </option>
                         @endforeach
                     </select>
-                    <input type="text" class="feedback-input jml_hari" name="jml_hari" placeholder="Jumlah Hari" disabled />
+                    <input type="text" class="feedback-input jml_hari" name="jml_hari" placeholder="Jumlah Hari"
+                        disabled />
                     <textarea placeholder="Keterangan" class="feedback-input keterangan" name="keterangan" style="height: 100px"></textarea>
-                    <button class="btn btn-primary w-100" id="btnSimpan"><i class="ti ti-send me-1"></i>Buat Izin Cuti</button>
+                    <button class="btn btn-primary w-100" id="btnSimpan"><i class="ti ti-send me-1"></i>Buat Izin
+                        Cuti</button>
                 </form>
             </div>
         </div>
