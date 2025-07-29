@@ -44,7 +44,7 @@
                     <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">
                         @csrf
                         <div style="display: flex; justify-content: center; align-items: center; height: 100px;">
-                            <img src="{{ asset('assets/login/images/logo.png') }}" alt="Logo Perusahaan"
+                            <img src="{{ asset('assets/login/images/logoweb-1.png') }}" alt="Logo Perusahaan"
                                 style="width: 200px;">
                         </div>
                         {{-- <div class="logo">
