@@ -9,19 +9,19 @@
     <div class="col">
         <form action="">
             <div class="row">
-                <div class="col">
+                <div class="col mt-2">
                     <x-input-with-icon label="Tanggal" icon="ti ti-calendar" name="tanggal" datepicker="flatpickr-date"
                         value="{{ Request('tanggal') }}" />
                 </div>
-                <div class="col">
+                <div class="col mt-2">
                     <x-select label="Cabang" name="kode_cabang" :data="$cabang" key="kode_cabang"
                         textShow="nama_cabang" selected="{{ Request('kode_cabang') }}" />
                 </div>
-                <div class="col">
+                <div class="col mt-2">
                     <x-select label="Departemen" name="kode_dept" :data="$departemen" key="kode_dept" textShow="nama_dept"
                         selected="{{ Request('kode_dept') }}" upperCase="true" />
                 </div>
-                <div class="col-1">
+                <div class="col mt-2">
                     <button class="btn btn-primary"><i class="ti ti-search"></i></button>
                 </div>
             </div>
