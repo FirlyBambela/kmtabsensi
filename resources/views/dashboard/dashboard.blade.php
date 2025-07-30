@@ -69,7 +69,8 @@
             <div class="card-body">
                 <div class="d-flex align-items-center mb-2">
                     <div class="avatar me-4">
-                        <span class="avatar-initial rounded bg-label-warning"><i class="ti ti-"></i></span>
+                        <span class="avatar-initial rounded bg-label-warning"><i
+                                class="ti ti-report-medical"></i></span>
                     </div>
                     <h4 class="mb-0">{{ $rekappresensi->sakit ?? 0 }}</h4>
                 </div>
