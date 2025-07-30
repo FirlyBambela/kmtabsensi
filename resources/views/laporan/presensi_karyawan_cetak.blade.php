@@ -46,9 +46,11 @@
                 <tr>
                     <td>
                         @if ($generalsetting->logo && Storage::exists('public/logo/' . $generalsetting->logo))
-                            <img src="{{ asset('storage/logo/' . $generalsetting->logo) }}" alt="Logo Perusahaan" style="max-width: 100px;">
+                            <img src="{{ asset('storage/logo/' . $generalsetting->logo) }}" alt="Logo Perusahaan"
+                                style="max-width: 100px;">
                         @else
-                            <img src="https://placehold.co/100x100?text=Logo" alt="Logo Default" style="max-width: 100px;">
+                            <img src="https://placehold.co/100x100?text=Logo" alt="Logo Default"
+                                style="max-width: 100px;">
                         @endif
                     </td>
                     <td>
@@ -57,7 +59,8 @@
                             <br>
                             {{ $generalsetting->nama_perusahaan }}
                             <br>
-                            PERIODE {{ date('d-m-Y', strtotime($periode_dari)) }} - {{ date('d-m-Y', strtotime($periode_sampai)) }}
+                            PERIODE {{ date('d-m-Y', strtotime($periode_dari)) }} -
+                            {{ date('d-m-Y', strtotime($periode_sampai)) }}
                         </h4>
                         <span style="font-style: italic;">{{ $generalsetting->alamat }}</span><br>
                         <span style="font-style: italic;">{{ $generalsetting->telepon }}</span>
@@ -69,8 +72,9 @@
             <div id="fotokaryawan">
                 @if (!empty($karyawan->foto))
                     @if (Storage::disk('public')->exists('/karyawan/' . $karyawan->foto))
-                        <img src="{{ getfotoKaryawan($karyawan->foto) }}" alt="user image" class="d-block  ms-0 ms-sm-4 rounded " height="150"
-                            width="140" style="object-fit: cover">
+                        <img src="{{ getfotoKaryawan($karyawan->foto) }}" alt="user image"
+                            class="d-block  ms-0 ms-sm-4 rounded " height="150" width="140"
+                            style="object-fit: cover">
                     @else
                         <img src="{{ asset('assets/img/avatars/No_Image_Available.jpg') }}" alt="user image"
                             class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img" width="150">
@@ -84,9 +88,9 @@
             <div id="detailkaryawan">
                 <table class="tablereport">
                     <tr>
-                        <td>Nama</td>
+                        <td>Nik</td>
                         <td>:</td>
-                        <td>{{ $karyawan->nama_karyawan }}</td>
+                        <td>{{ $karyawan->nik }}</td>
                     </tr>
                     <tr>
                         <td>Nama</td>
