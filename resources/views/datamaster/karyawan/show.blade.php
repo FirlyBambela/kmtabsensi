@@ -15,8 +15,9 @@
             <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4">
                 <div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
                     @if (Storage::disk('public')->exists('/karyawan/' . $karyawan->foto))
-                        <img src="{{ getfotoKaryawan($karyawan->foto) }}" alt="user image" class="d-block  ms-0 ms-sm-4 rounded " height="150"
-                            width="140" style="object-fit: cover">
+                        <img src="{{ getfotoKaryawan($karyawan->foto) }}" alt="user image"
+                            class="d-block  ms-0 ms-sm-4 rounded " height="150" width="140"
+                            style="object-fit: cover">
                     @else
                         <img src="{{ asset('assets/img/avatars/No_Image_Available.jpg') }}" alt="user image"
                             class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img" width="150">
@@ -28,7 +29,8 @@
                         class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
                         <div class="user-profile-info">
                             <h4>{{ textCamelCase($karyawan->nama_karyawan) }}</h4>
-                            <ul class="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-2">
+                            <ul
+                                class="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-2">
                                 <li class="list-inline-item d-flex gap-1">
                                     <i class="ti ti-barcode"></i> {{ textCamelCase($karyawan->nik) }}
                                 </li>
@@ -78,7 +80,7 @@
                     </li>
                     <li class="d-flex align-items-center mb-3">
                         <i class="ti ti-user text-heading"></i><span class="fw-medium mx-2 text-heading">
-                            Nama Karyawan:</span> <span>{{ textCamelCase($karyawan->nama_karyawan) }}</span>
+                            Nama:</span> <span>{{ textCamelCase($karyawan->nama_karyawan) }}</span>
                     </li>
                     <li class="d-flex align-items-center mb-3">
                         <i class="ti ti-map-pin text-heading"></i><span class="fw-medium mx-2 text-heading">
@@ -111,7 +113,7 @@
                     <li class="d-flex align-items-center mb-3">
                         <i class="ti ti-friends text-heading"></i><span class="fw-medium mx-2 text-heading">
                             Status Kawin:</span>
-                        <span>{{ $karyawan->keterangan_status_kawin }} </span>
+                        <span>{{ $karyawan->kode_status_kawin }} </span>
                     </li>
                     <li class="d-flex align-items-center mb-3">
                         <i class="ti ti-school text-heading"></i><span class="fw-medium mx-2 text-heading">
@@ -165,15 +167,18 @@
                 @if ($user)
                     <ul class="list-unstyled mb-4 mt-3">
                         <li class="d-flex align-items-center mb-3">
-                            <i class="ti ti-barcode text-heading"></i><span class="fw-medium mx-2 text-heading">Username :</span>
+                            <i class="ti ti-barcode text-heading"></i><span
+                                class="fw-medium mx-2 text-heading">Username :</span>
                             <span>{{ $user->username }}</span>
                         </li>
                         <li class="d-flex align-items-center mb-3">
-                            <i class="ti ti-barcode text-heading"></i><span class="fw-medium mx-2 text-heading">Email :</span>
+                            <i class="ti ti-barcode text-heading"></i><span class="fw-medium mx-2 text-heading">Email
+                                :</span>
                             <span>{{ $user->email }}</span>
                         </li>
                         <li class="d-flex align-items-center mb-3">
-                            <i class="ti ti-barcode text-heading"></i><span class="fw-medium mx-2 text-heading">Password :</span>
+                            <i class="ti ti-barcode text-heading"></i><span
+                                class="fw-medium mx-2 text-heading">Password :</span>
                             <span>********</span>
                         </li>
                     </ul>
@@ -195,11 +200,13 @@
             <div class="col-md-12">
                 <ul class="nav nav-pills flex-column flex-sm-row mb-4">
                     <li class="nav-item">
-                        <a class="nav-link active" href="javascript:void(0);"><i class="ti-xs ti ti-face-id me-1"></i> Face
+                        <a class="nav-link active" href="javascript:void(0);"><i
+                                class="ti-xs ti ti-face-id me-1"></i> Face
                             Recognition</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages-profile-teams.html"><i class="ti-xs ti ti-home-move me-1"></i>
+                        <a class="nav-link" href="pages-profile-teams.html"><i
+                                class="ti-xs ti ti-home-move me-1"></i>
                             Mutasi/Promosi/Demosi</a>
                     </li>
                     <li class="nav-item">
@@ -207,7 +214,8 @@
                             Gaji</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages-profile-connections.html"><i class="ti-xs ti ti-report-money me-1"></i> Tunjangan</a>
+                        <a class="nav-link" href="pages-profile-connections.html"><i
+                                class="ti-xs ti ti-report-money me-1"></i> Tunjangan</a>
                     </li>
                     {{-- <li class="nav-item">
                   <a class="nav-link" href="{{ route('karyawan.dokumen', Crypt::encrypt($karyawan->nik)) }}"><i
@@ -221,12 +229,16 @@
                 <div class="card card-action mb-4">
                     <div class="card-header align-items-center d-flex justify-content-between">
                         <div>
-                            <a href="#" class="btn btn-primary" id="btnAddface"><i class="ti ti-face-id me-1"></i> Tambah Wajah</a>
+                            <a href="#" class="btn btn-primary" id="btnAddface"><i
+                                    class="ti ti-face-id me-1"></i> Tambah Wajah</a>
                         </div>
                         <div>
-                            <form id="formHapusSemuaWajah" method="POST" action="{{ route('facerecognition.destroyAll', Crypt::encrypt($karyawan->nik)) }}" style="display:inline">
+                            <form id="formHapusSemuaWajah" method="POST"
+                                action="{{ route('facerecognition.destroyAll', Crypt::encrypt($karyawan->nik)) }}"
+                                style="display:inline">
                                 @csrf
-                                <button type="button" class="btn btn-danger" id="btnHapusSemuaWajah"><i class="ti ti-trash me-1"></i>Hapus Semua Wajah</button>
+                                <button type="button" class="btn btn-danger" id="btnHapusSemuaWajah"><i
+                                        class="ti ti-trash me-1"></i>Hapus Semua Wajah</button>
                             </form>
                         </div>
                     </div>
@@ -242,16 +254,19 @@
                                 <div class="col-6 col-md-4 col-lg-3">
                                     <div class="card h-100">
                                         <div class="position-relative">
-                                            <img src="{{ $urlWithTimestamp }}" class="card-img-top face-image" alt="Foto Wajah"
-                                                style="height: 200px; object-fit: cover; cursor: pointer;" data-bs-toggle="modal"
-                                                data-bs-target="#modalFotoWajah" data-image="{{ $urlWithTimestamp }}">
+                                            <img src="{{ $urlWithTimestamp }}" class="card-img-top face-image"
+                                                alt="Foto Wajah"
+                                                style="height: 200px; object-fit: cover; cursor: pointer;"
+                                                data-bs-toggle="modal" data-bs-target="#modalFotoWajah"
+                                                data-image="{{ $urlWithTimestamp }}">
                                             <div class="position-absolute top-0 end-0 p-2">
                                                 <form method="POST" name="deleteform" class="deleteform d-inline"
                                                     action="{{ route('facerecognition.delete', Crypt::encrypt($d->id)) }}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <a href="#" class="delete-confirm">
-                                                        <i class="ti ti-trash text-danger bg-white rounded-circle p-1"></i>
+                                                        <i
+                                                            class="ti ti-trash text-danger bg-white rounded-circle p-1"></i>
                                                     </a>
                                                 </form>
                                             </div>
@@ -286,7 +301,8 @@
 </script>
 
 <!-- Modal Foto Wajah -->
-<div class="modal fade" id="modalFotoWajah" tabindex="-1" aria-labelledby="modalFotoWajahLabel" aria-hidden="true">
+<div class="modal fade" id="modalFotoWajah" tabindex="-1" aria-labelledby="modalFotoWajahLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">

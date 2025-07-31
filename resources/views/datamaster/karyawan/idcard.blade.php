@@ -22,7 +22,7 @@
         }
 
         .idcard-header-modern {
-            background: linear-gradient(120deg, #32745e 80%, #58907D 100%);
+            background: linear-gradient(120deg, #0f3d2e 80%, #58907D 100%);
             height: 120px;
             position: relative;
             display: flex;
@@ -147,7 +147,8 @@
         <div class="idcard-container" id="idcard-area">
             <div class="idcard-header-modern">
                 @if ($generalsetting->logo && Storage::exists('public/logo/' . $generalsetting->logo))
-                    <img src="{{ asset('storage/logo/' . $generalsetting->logo) }}" alt="Logo Perusahaan" class="company-logo-modern" alt="Company Logo">
+                    <img src="{{ asset('storage/logo/' . $generalsetting->logo) }}" alt="Logo Perusahaan"
+                        class="company-logo-modern" alt="Company Logo">
                 @else
                     <img src="https://placehold.co/100x100?text=Logo" class="company-logo-modern" alt="Company Logo">
                 @endif
@@ -160,15 +161,17 @@
                 @if (Storage::disk('public')->exists('/karyawan/' . $karyawan->foto))
                     <img src="{{ getfotoKaryawan($karyawan->foto) }}" class="profile-pic-modern" alt="Profile Picture">
                 @else
-                    <img src="{{ asset('assets/template/img/sample/avatar/avatar1.jpg') }}" class="profile-pic-modern" alt="Profile Picture">
+                    <img src="{{ asset('assets/template/img/sample/avatar/avatar1.jpg') }}" class="profile-pic-modern"
+                        alt="Profile Picture">
                 @endif
             @else
-                <img src="{{ asset('assets/template/img/sample/avatar/avatar1.jpg') }}" class="profile-pic-modern" alt="Profile Picture">
+                <img src="{{ asset('assets/template/img/sample/avatar/avatar1.jpg') }}" class="profile-pic-modern"
+                    alt="Profile Picture">
             @endif
 
             <div class="idcard-body-modern">
                 <div class="idcard-name-modern">{{ textUpperCase($karyawan->nama_karyawan) }}</div>
-                <div class="idcard-position-modern">Software Engineer</div>
+                <div class="idcard-position-modern">Klinik Mata Totabuan</div>
                 <div class="idcard-info-modern"><i class="fa-solid fa-id-badge"></i> ID: {{ $karyawan->nik }}</div>
                 <div class="idcard-info-modern"><i class="fa-solid fa-calendar-plus"></i> Join Date:
                     {{ date('d-m-Y', strtotime($karyawan->tanggal_masuk)) }}</div>
@@ -178,7 +181,7 @@
                 </div>
             </div>
             <div class="idcard-footer-modern">
-                www.company.com
+                www.kmtotabuan.site
             </div>
         </div>
         <div style="text-align:center; margin: 24px 0 0 0; z-index:2; position:relative;">
