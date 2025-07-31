@@ -10,7 +10,8 @@
         <div class="card">
             <div class="card-header">
                 @can('harilibur.create')
-                    <a href="#" id="btnCreate" class="btn btn-primary"><i class="fa fa-plus me-2"></i> Tambah Hari Libur</a>
+                    <a href="#" id="btnCreate" class="btn btn-primary"><i class="fa fa-plus me-2"></i> Tambah Hari
+                        Libur</a>
                 @endcan
             </div>
             <div class="card-body">
@@ -19,18 +20,19 @@
                         <form action="{{ route('harilibur.index') }}" method="GET">
                             <div class="row">
                                 <div class="col-lg-6 col-md-12 col-sm-12">
-                                    <x-input-with-icon icon="ti ti-calendar" label="Dari" name="dari" datepicker="flatpickr-date"
-                                        :value="Request('dari')" />
+                                    <x-input-with-icon icon="ti ti-calendar" label="Dari" name="dari"
+                                        datepicker="flatpickr-date" :value="Request('dari')" />
                                 </div>
                                 <div class="col-lg-6 col-md-12 col-sm-12">
-                                    <x-input-with-icon icon="ti ti-calendar" label="Sampai" name="sampai" datepicker="flatpickr-date"
-                                        :value="Request('sampai')" />
+                                    <x-input-with-icon icon="ti ti-calendar" label="Sampai" name="sampai"
+                                        datepicker="flatpickr-date" :value="Request('sampai')" />
                                 </div>
                             </div>
 
                             @if ($user->hasRole(['super admin', 'gm administrasi']))
                                 <div class="form-group">
-                                    <select name="kode_cabang_search" id="kode_cabang_search" class="form-select select2Kodecabangsearch">
+                                    <select name="kode_cabang_search" id="kode_cabang_search"
+                                        class="form-select select2Kodecabangsearch">
                                         <option value="">Semua Cabang</option>
                                         @foreach ($cabang as $c)
                                             <option value="{{ $c->kode_cabang }}"
@@ -43,7 +45,8 @@
                             @endif
 
                             <div class="form-group mb-3">
-                                <button class="btn btn-primary w-100" id="btnSearch"><i class="ti ti-search me-1"></i>Cari</button>
+                                <button class="btn btn-primary w-100" id="btnSearch"><i
+                                        class="ti ti-search me-1"></i>Cari</button>
                             </div>
                         </form>
                     </div>
@@ -59,7 +62,7 @@
                                         <th>Tanggal</th>
                                         <th>Cabang</th>
                                         <th style="width: 30%">Keterangan</th>
-                                        <th>#</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -73,12 +76,14 @@
                                             <td>
                                                 <div class="d-flex">
                                                     @can('harilibur.edit')
-                                                        <a href="#" class="btnEdit me-1" kode_libur="{{ Crypt::encrypt($d->kode_libur) }}">
+                                                        <a href="#" class="btnEdit me-1"
+                                                            kode_libur="{{ Crypt::encrypt($d->kode_libur) }}">
                                                             <i class="ti ti-edit text-success"></i>
                                                         </a>
                                                     @endcan
                                                     @can('harilibur.setharilibur')
-                                                        <a href="{{ route('harilibur.aturharilibur', Crypt::encrypt($d->kode_libur)) }}" class="me-1">
+                                                        <a href="{{ route('harilibur.aturharilibur', Crypt::encrypt($d->kode_libur)) }}"
+                                                            class="me-1">
                                                             <i class="ti ti-settings-cog text-info"></i>
                                                         </a>
                                                     @endcan

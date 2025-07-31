@@ -23,7 +23,7 @@
                                     <tr>
                                         <th>Kode</th>
                                         <th>Jenis Tunjangan</th>
-                                        <th>#</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>

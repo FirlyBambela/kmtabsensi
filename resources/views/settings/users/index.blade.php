@@ -53,7 +53,7 @@
                                         <th>Email</th>
                                         <th>Role</th>
                                         <th><i class="ti ti-link"></i></th>
-                                        <th>#</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>

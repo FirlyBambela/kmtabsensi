@@ -21,12 +21,12 @@
                         <form action="{{ route('lembur.index') }}">
                             <div class="row">
                                 <div class="col-lg-6 col-sm-12 col-md-12">
-                                    <x-input-with-icon label="Dari" value="{{ Request('dari') }}" name="dari" icon="ti ti-calendar"
-                                        datepicker="flatpickr-date" />
+                                    <x-input-with-icon label="Dari" value="{{ Request('dari') }}" name="dari"
+                                        icon="ti ti-calendar" datepicker="flatpickr-date" />
                                 </div>
                                 <div class="col-lg-6 col-sm-12 col-md-12">
-                                    <x-input-with-icon label="Sampai" value="{{ Request('sampai') }}" name="sampai" icon="ti ti-calendar"
-                                        datepicker="flatpickr-date" />
+                                    <x-input-with-icon label="Sampai" value="{{ Request('sampai') }}" name="sampai"
+                                        icon="ti ti-calendar" datepicker="flatpickr-date" />
                                 </div>
                             </div>
                             <div class="row">
@@ -48,7 +48,8 @@
                                         <select name="kode_dept" id="kode_dept" class="form-select">
                                             <option value="">Semua Departemen</option>
                                             @foreach ($departemen as $d)
-                                                <option value="{{ $d->kode_dept }}" {{ Request('kode_dept') == $d->kode_dept ? 'selected' : '' }}>
+                                                <option value="{{ $d->kode_dept }}"
+                                                    {{ Request('kode_dept') == $d->kode_dept ? 'selected' : '' }}>
                                                     {{ textUpperCase($d->nama_dept) }}
                                                 </option>
                                             @endforeach
@@ -73,8 +74,8 @@
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <x-input-with-icon label="Nama Karyawan" name="nama_karyawan" value="{{ Request('nama_karyawan') }}"
-                                        icon="ti ti-user" />
+                                    <x-input-with-icon label="Nama Karyawan" name="nama_karyawan"
+                                        value="{{ Request('nama_karyawan') }}" icon="ti ti-user" />
                                 </div>
                             </div>
                             <div class="row">
@@ -103,7 +104,7 @@
                                         <th>Lembur OUT</th>
                                         <th>Jml Jam</th>
                                         <th>Status</th>
-                                        <th>#</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -113,9 +114,11 @@
                                             <td>{{ $d->nik }}</td>
                                             <td>{{ $d->nama_karyawan }}</td>
                                             <td>{{ $d->nama_cabang }}</td>
-                                            <td><span class="badge bg-success">{{ date('d-m-Y H:i', strtotime($d->lembur_mulai)) }}</span>
+                                            <td><span
+                                                    class="badge bg-success">{{ date('d-m-Y H:i', strtotime($d->lembur_mulai)) }}</span>
                                                 -
-                                                <span class="badge bg-danger">{{ date('d-m-Y H:i', strtotime($d->lembur_selesai)) }}</span>
+                                                <span
+                                                    class="badge bg-danger">{{ date('d-m-Y H:i', strtotime($d->lembur_selesai)) }}</span>
                                             </td>
                                             <td class="text-center">
                                                 {!! $d->lembur_in ? date('d-m-Y H:i', strtotime($d->lembur_in)) : '<i class="ti ti-clock text-warning"></i>' !!}
@@ -124,7 +127,9 @@
                                                 {!! $d->lembur_out ? date('d-m-Y H:i', strtotime($d->lembur_out)) : '<i class="ti ti-clock text-warning"></i>' !!}
                                             </td>
                                             <td class="text-center">
-                                                {!! $d->lembur_in && $d->lembur_out ? ROUND(hitungJam($d->lembur_in, $d->lembur_out), 2) : '<i class="ti ti-clock text-warning"></i>' !!}
+                                                {!! $d->lembur_in && $d->lembur_out
+                                                    ? ROUND(hitungJam($d->lembur_in, $d->lembur_out), 2)
+                                                    : '<i class="ti ti-clock text-warning"></i>' !!}
                                             </td>
                                             <td class="text-center">
                                                 @if ($d->status == '1')
@@ -139,7 +144,8 @@
                                                 <div class="d-flex">
                                                     @can('lembur.approve')
                                                         @if ($d->status == 0)
-                                                            <a href="#" class="btnApprove me-1" id="{{ Crypt::encrypt($d->id) }}">
+                                                            <a href="#" class="btnApprove me-1"
+                                                                id="{{ Crypt::encrypt($d->id) }}">
                                                                 <i class="ti ti-external-link text-primary"></i>
                                                             </a>
                                                         @elseif($d->status == 1 || $d->status == 2)
@@ -154,11 +160,13 @@
                                                         @endif
                                                     @endcan
                                                     @can('lembur.edit')
-                                                        <a href="#" class="btnEdit me-1" id="{{ Crypt::encrypt($d->id) }}"><i
+                                                        <a href="#" class="btnEdit me-1"
+                                                            id="{{ Crypt::encrypt($d->id) }}"><i
                                                                 class="ti ti-edit text-success"></i></a>
                                                     @endcan
                                                     @can('lembur.index')
-                                                        <a href="#" class="btnShow me-1" id="{{ Crypt::encrypt($d->id) }}"><i
+                                                        <a href="#" class="btnShow me-1"
+                                                            id="{{ Crypt::encrypt($d->id) }}"><i
                                                                 class="ti ti-file-description text-info"></i></a>
                                                     @endcan
                                                     @can('lembur.delete')

@@ -24,7 +24,7 @@
                                         <th>Kode</th>
                                         <th>Jenis Cuti</th>
                                         <th>Jumlah Hari</th>
-                                        <th>#</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,7 +38,8 @@
                                                 <div class="d-flex">
                                                     @can('cuti.edit')
                                                         <div>
-                                                            <a href="#" class="me-2 btnEdit" kode_cuti="{{ Crypt::encrypt($d->kode_cuti) }}">
+                                                            <a href="#" class="me-2 btnEdit"
+                                                                kode_cuti="{{ Crypt::encrypt($d->kode_cuti) }}">
                                                                 <i class="ti ti-edit text-success"></i>
                                                             </a>
                                                         </div>

@@ -62,7 +62,7 @@
                                         <th class="text-center"><i class="ti ti-clock-hour-3"></i></th>
                                         <th class="text-center"><i class="ti ti-fingerprint"></i></th>
                                         <th>Foto</th>
-                                        <th>#</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>

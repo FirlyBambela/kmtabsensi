@@ -41,7 +41,7 @@
                                     <tr>
                                         <th>Kode Jabatan</th>
                                         <th>Nama Jabatan</th>
-                                        <th>#</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -53,7 +53,8 @@
                                                 <div class="d-flex">
                                                     @can('jabatan.edit')
                                                         <div>
-                                                            <a href="#" class="me-2 btnEdit" kode_jabatan="{{ Crypt::encrypt($j->kode_jabatan) }}">
+                                                            <a href="#" class="me-2 btnEdit"
+                                                                kode_jabatan="{{ Crypt::encrypt($j->kode_jabatan) }}">
                                                                 <i class="ti ti-edit text-success"></i>
                                                             </a>
                                                         </div>

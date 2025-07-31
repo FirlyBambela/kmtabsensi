@@ -49,7 +49,7 @@
                                         <th>Akhir Istirahat</th>
                                         <th>Lintas Hari</th>
                                         <th>Total Jam</th>
-                                        <th>#</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>

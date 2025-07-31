@@ -51,7 +51,7 @@
                                         <th>Kode</th>
                                         <th>Cabang</th>
                                         <th>Departemen</th>
-                                        <th>#</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>

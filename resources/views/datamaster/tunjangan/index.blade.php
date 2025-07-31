@@ -54,7 +54,7 @@
                                         <th rowspan="2">Cabang</th>
                                         <th colspan="{{ count($jenis_tunjangan) }}">Tunjangan</th>
                                         <th rowspan="2">Tanggal Berlaku</th>
-                                        <th rowspan="2">#</th>
+                                        <th rowspan="2">Aksi</th>
                                     </tr>
                                     <tr>
                                         @foreach ($jenis_tunjangan as $d)

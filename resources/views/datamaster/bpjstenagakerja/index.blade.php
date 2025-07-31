@@ -54,7 +54,7 @@
                                         <th>Cabang</th>
                                         <th>Jumlah</th>
                                         <th>Tanggal Berlaku</th>
-                                        <th>#</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>

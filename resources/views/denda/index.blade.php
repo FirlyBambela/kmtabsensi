@@ -23,7 +23,7 @@
                                         <th>Dari</th>
                                         <th>Sampai</th>
                                         <th>Denda</th>
-                                        <th>#</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -34,7 +34,8 @@
                                             <td class="text-end">{{ formatAngka($d->denda) }}</td>
                                             <td>
                                                 <div class="d-flex">
-                                                    <a href="#" class="btnEdit me-1" id="{{ Crypt::encrypt($d->id) }}"><i
+                                                    <a href="#" class="btnEdit me-1"
+                                                        id="{{ Crypt::encrypt($d->id) }}"><i
                                                             class="ti ti-edit text-success"></i></a>
                                                     <form method="POST" name="deleteform" class="deleteform"
                                                         action="{{ route('denda.delete', Crypt::encrypt($d->id)) }}">

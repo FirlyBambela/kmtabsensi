@@ -38,7 +38,7 @@
                                         <th>No.</th>
                                         <th>Permission Name</th>
                                         <th>Group</th>
-                                        <th>#</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>

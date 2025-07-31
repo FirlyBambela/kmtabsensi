@@ -51,7 +51,7 @@
                                         <th>Bulan</th>
                                         <th>Tahun</th>
                                         <th>Status</th>
-                                        <th>#</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>

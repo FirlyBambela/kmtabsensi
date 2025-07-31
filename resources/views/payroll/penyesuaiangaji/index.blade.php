@@ -49,7 +49,7 @@
                                         <th>Kode</th>
                                         <th>Bulan</th>
                                         <th>Tahun</th>
-                                        <th>#</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -44,7 +44,7 @@
                                         <th>Alamat</th>
                                         <th>Telepon</th>
                                         <th>Radius</th>
-                                        <th>#</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>

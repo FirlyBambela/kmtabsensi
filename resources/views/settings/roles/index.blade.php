@@ -38,7 +38,7 @@
                                         <th>No.</th>
                                         <th>Role</th>
                                         <th>Guard</th>
-                                        <th>#</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
