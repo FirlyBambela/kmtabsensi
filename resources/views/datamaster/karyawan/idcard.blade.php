@@ -22,7 +22,7 @@
         }
 
         .idcard-header-modern {
-            background: linear-gradient(120deg, #0f3d2e 80%, #58907D 100%);
+            background: linear-gradient(120deg, #0f3d2e 80%, #163a2e 100%);
             height: 120px;
             position: relative;
             display: flex;
@@ -46,9 +46,9 @@
 
         .company-logo-modern {
             position: absolute;
-            top: 24px;
-            right: 32px;
-            width: 60px;
+            top: 20px;
+            right: 40px;
+            width: 80px;
             opacity: 0.95;
         }
 
