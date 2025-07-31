@@ -171,7 +171,7 @@
 
             <div class="idcard-body-modern">
                 <div class="idcard-name-modern">{{ textUpperCase($karyawan->nama_karyawan) }}</div>
-                <div class="idcard-position-modern">Klinik Mata Totabuan</div>
+                <div class="idcard-position-modern">{{ $karyawan->nama_cabang }}</div>
                 <div class="idcard-info-modern"><i class="fa-solid fa-id-badge"></i> ID: {{ $karyawan->nik }}</div>
                 <div class="idcard-info-modern"><i class="fa-solid fa-calendar-plus"></i> Join Date:
                     {{ date('d-m-Y', strtotime($karyawan->tanggal_masuk)) }}</div>

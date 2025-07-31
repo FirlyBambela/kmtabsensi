@@ -1,16 +1,19 @@
-<form action="{{ route('karyawan.update', Crypt::encrypt($karyawan->nik)) }}" id="formcreateKaryawan" method="POST" enctype="multipart/form-data">
+<form action="{{ route('karyawan.update', Crypt::encrypt($karyawan->nik)) }}" id="formcreateKaryawan" method="POST"
+    enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <x-input-with-icon-label icon="ti ti-barcode" label="NIK" name="nik" value="{{ $karyawan->nik }}" />
     <x-input-with-icon-label icon="ti ti-credit-card" label="No. KTP" name="no_ktp" value="{{ $karyawan->no_ktp }}" />
-    <x-input-with-icon-label icon="ti ti-user" label="Nama Karyawan" name="nama_karyawan" value="{{ $karyawan->nama_karyawan }}" />
+    <x-input-with-icon-label icon="ti ti-user" label="Nama Karyawan" name="nama_karyawan"
+        value="{{ $karyawan->nama_karyawan }}" />
     <div class="row">
         <div class="col-6">
-            <x-input-with-icon-label icon="ti ti-map-pin" label="Tempat Lahir" name="tempat_lahir" value="{{ $karyawan->tempat_lahir }}" />
+            <x-input-with-icon-label icon="ti ti-map-pin" label="Tempat Lahir" name="tempat_lahir"
+                value="{{ $karyawan->tempat_lahir }}" />
         </div>
         <div class="col-6">
-            <x-input-with-icon-label icon="ti ti-calendar" label="Tanggal Lahir" datepicker="flatpickr-date" name="tanggal_lahir"
-                value="{{ $karyawan->tanggal_lahir }}" />
+            <x-input-with-icon-label icon="ti ti-calendar" label="Tanggal Lahir" datepicker="flatpickr-date"
+                name="tanggal_lahir" value="{{ $karyawan->tanggal_lahir }}" />
         </div>
     </div>
     <x-textarea-label label="Alamat" name="alamat" value="{{ $karyawan->alamat }}" />
@@ -25,8 +28,8 @@
     <x-input-with-icon-label icon="ti ti-phone" label="No. HP" name="no_hp" value="{{ $karyawan->no_hp }}" />
     <div class="row">
         <div class="col-lg-6 col-sm-12 col-md-12">
-            <x-select-label label="Status Perkawinan" name="kode_status_kawin" :data="$status_kawin" key="kode_status_kawin" textShow="status_kawin"
-                kode="true" selected="{{ $karyawan->kode_status_kawin }}" />
+            <x-select-label label="Status Perkawinan" name="kode_status_kawin" :data="$status_kawin" key="kode_status_kawin"
+                textShow="status_kawin" kode="true" selected="{{ $karyawan->kode_status_kawin }}" />
         </div>
         <div class="col-lg-6 col-sm-12 col-md-12">
             <div class="form-group mb-3">
@@ -37,7 +40,7 @@
                     <option value="SD" {{ $karyawan->pendidikan_terakhir == 'SD' ? 'selected' : '' }}>SD</option>
                     <option value="SMP" {{ $karyawan->pendidikan_terakhir == 'SMP' ? 'selected' : '' }}>SMP</option>
                     <option value="SMA" {{ $karyawan->pendidikan_terakhir == 'SMA' ? 'selected' : '' }}>SMA</option>
-                    <option value="SMK" {{ $karyawan->pendidikan_terakhir == 'SMK"' ? 'selected' : '' }}>SMK</option>
+                    <option value="SMK" {{ $karyawan->pendidikan_terakhir == 'SMK' ? 'selected' : '' }}>SMK</option>
                     <option value="D1" {{ $karyawan->pendidikan_terakhir == 'D1' ? 'selected' : '' }}>D1</option>
                     <option value="D2" {{ $karyawan->pendidikan_terakhir == 'D2' ? 'selected' : '' }}>D2</option>
                     <option value="D3" {{ $karyawan->pendidikan_terakhir == 'D3' ? 'selected' : '' }}>D3</option>
@@ -51,13 +54,13 @@
     </div>
     <x-select-label label="Kantor Cabang" name="kode_cabang" :data="$cabang" key="kode_cabang" textShow="nama_cabang"
         selected="{{ $karyawan->kode_cabang }}" />
-    <x-select-label label="Departemen" name="kode_dept" :data="$departemen" selected="{{ $karyawan->kode_dept }}" key="kode_dept" textShow="nama_dept"
-        upperCase="true" />
+    <x-select-label label="Departemen" name="kode_dept" :data="$departemen" selected="{{ $karyawan->kode_dept }}"
+        key="kode_dept" textShow="nama_dept" upperCase="true" />
     </div>
-    <x-select-label label="Jabatan" name="kode_jabatan" :data="$jabatan" selected="{{ $karyawan->kode_jabatan }}" key="kode_jabatan"
-        textShow="nama_jabatan" upperCase="true" />
-    <x-input-with-icon-label icon="ti ti-calendar" datepicker="flatpickr-date" label="Tanggal Masuk" name="tanggal_masuk"
-        value="{{ $karyawan->tanggal_masuk }}" />
+    <x-select-label label="Jabatan" name="kode_jabatan" :data="$jabatan" selected="{{ $karyawan->kode_jabatan }}"
+        key="kode_jabatan" textShow="nama_jabatan" upperCase="true" />
+    <x-input-with-icon-label icon="ti ti-calendar" datepicker="flatpickr-date" label="Tanggal Masuk"
+        name="tanggal_masuk" value="{{ $karyawan->tanggal_masuk }}" />
     <div class="form-group mb-3">
         <label for="exampleFormControlInput1" style="font-weight: 600" class="form-label">Status Karyawan</label>
         <select name="status_karyawan" id="status_karyawan" class="form-select">
@@ -69,7 +72,8 @@
     </div>
 
     <div class="form-group mb-3">
-        <label for="exampleFormControlInput1" style="font-weight: 600" class="form-label">Status Aktif Karyawan</label>
+        <label for="exampleFormControlInput1" style="font-weight: 600" class="form-label">Status Aktif
+            Karyawan</label>
         <select name="status_aktif_karyawan" id="status_aktif_karyawan" class="form-select">
             <option value="">Status Aktif Karyawan</option>
             <option value="1" {{ $karyawan->status_aktif_karyawan == '1' ? 'selected' : '' }}>Aktif</option>
@@ -78,7 +82,8 @@
     </div>
     <x-input-file name="foto" label="Foto" />
 
-    <x-input-with-icon icon="ti ti-fingerprint" label="PIN Finger Print" name="pin" value="{{ $karyawan->pin }}" />
+    <x-input-with-icon icon="ti ti-fingerprint" label="PIN Finger Print" name="pin"
+        value="{{ $karyawan->pin }}" />
     <div class="form-group">
         <button class="btn btn-primary w-100" type="submit">
             <ion-icon name="send-outline" class="me-1"></ion-icon>
