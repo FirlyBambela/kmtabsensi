@@ -86,7 +86,7 @@
             <div class="card-body">
                 <div class="d-flex align-items-center mb-2">
                     <div class="avatar me-4">
-                        <span class="avatar-initial rounded bg-label-primary"><i class="ti ti-file"></i></span>
+                        <span class="avatar-initial rounded bg-label-primary"><i class="ti ti-briefcase"></i></span>
                     </div>
                     <h4 class="mb-0">{{ $rekappresensi->cuti ?? 0 }}</h4>
                 </div>
