@@ -8,6 +8,7 @@ use App\Models\Detailharilibur;
 use App\Models\Detailsetjamkerjabydept;
 use App\Models\Facerecognition;
 use App\Models\Harilibur;
+use App\Models\Izindinas;
 use App\Models\Jamkerja;
 use App\Models\Karyawan;
 use App\Models\Pengaturanumum;
@@ -193,6 +194,8 @@ class PresensiController extends Controller
         $user = User::where('id', auth()->user()->id)->first();
         $userkaryawan = Userkaryawan::where('id_user', $user->id)->first();
         $karyawan = Karyawan::where('nik', $userkaryawan->nik)->first();
+
+
         $status_lock_location = $karyawan->lock_location;
 
         $status = $request->status;
@@ -268,6 +271,18 @@ class PresensiController extends Controller
         $jam_pulang = $tanggal_pulang . " " . $jam_kerja->jam_pulang;
 
 
+        // Cek Izin Dinas
+        $izin_dinas = Izindinas::where('nik', $karyawan->nik)
+            ->where('status', 1)
+            ->where('dari', '<=', $tanggal_presensi)
+            ->where('sampai', '>=', $tanggal_presensi)
+            ->first();
+
+        // dd($izin_dinas);
+
+        if ($izin_dinas) {
+            $status_lock_location = 0;
+        }
         //dd($jam_presensi . " " . $jam_mulai_pulang);
         //Cek Radius
         //dd($jam_presensi . " " . $jam_mulai_masuk);

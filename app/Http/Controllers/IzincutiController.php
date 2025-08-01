@@ -181,6 +181,7 @@ class IzincutiController extends Controller
         try {
             Izincuti::where('kode_izin_cuti', $kode_izin_cuti)->update([
                 'nik' => $request->nik,
+                'tanggal' => $request->dari,
                 'dari' => $request->dari,
                 'sampai' => $request->sampai,
                 'keterangan' => $request->keterangan,
@@ -223,37 +224,41 @@ class IzincutiController extends Controller
         $error = '';
         DB::beginTransaction();
         try {
-            while (strtotime($dari) <= strtotime($sampai)) {
+            if (isset($request->approve)) {
+                // echo 'test';
+                Izincuti::where('kode_izin_cuti', $kode_izin_cuti)->update([
+                    'status' => 1
+                ]);
 
-                //Cek Jadwal Pada Setiap tanggal
-                $namahari = getnamaHari(date('D', strtotime($dari)));
+                while (strtotime($dari) <= strtotime($sampai)) {
 
-                $jamkerja = Setjamkerjabydate::join('presensi_jamkerja', 'presensi_jamkerja_bydate.kode_jam_kerja', '=', 'presensi_jamkerja.kode_jam_kerja')
-                    ->where('nik', $izincuti->nik)
-                    ->where('tanggal', $dari)
-                    ->first();
-                if ($jamkerja == null) {
+                    //Cek Jadwal Pada Setiap tanggal
+                    $namahari = getnamaHari(date('D', strtotime($dari)));
 
-                    $jamkerja = Setjamkerjabyday::join('presensi_jamkerja', 'presensi_jamkerja_byday.kode_jam_kerja', '=', 'presensi_jamkerja.kode_jam_kerja')
-                        ->where('nik', $izincuti->nik)->where('hari', $namahari)
+                    $jamkerja = Setjamkerjabydate::join('presensi_jamkerja', 'presensi_jamkerja_bydate.kode_jam_kerja', '=', 'presensi_jamkerja.kode_jam_kerja')
+                        ->where('nik', $izincuti->nik)
+                        ->where('tanggal', $dari)
                         ->first();
-                }
+                    if ($jamkerja == null) {
 
-                if ($jamkerja == null) {
-                    $jamkerja = Detailsetjamkerjabydept::join('presensi_jamkerja_bydept', 'presensi_jamkerja_bydept_detail.kode_jk_dept', '=', 'presensi_jamkerja_bydept.kode_jk_dept')
-                        ->join('presensi_jamkerja', 'presensi_jamkerja_bydept_detail.kode_jam_kerja', '=', 'presensi_jamkerja.kode_jam_kerja')
-                        ->where('kode_dept', $kode_dept)
-                        ->where('kode_cabang', $izincuti->kode_cabang)
-                        ->where('hari', $namahari)->first();
-                }
+                        $jamkerja = Setjamkerjabyday::join('presensi_jamkerja', 'presensi_jamkerja_byday.kode_jam_kerja', '=', 'presensi_jamkerja.kode_jam_kerja')
+                            ->where('nik', $izincuti->nik)->where('hari', $namahari)
+                            ->first();
+                    }
 
-                if ($jamkerja == null) {
-                    $error .= 'Jam Kerja pada Tanggal ' . $dari . ' Belum Di Set! <br>';
-                } else {
-                    // dd($request->all());
-                    // dd(isset($request->approve));
-                    if (isset($request->approve)) {
-                        // echo 'test';
+                    if ($jamkerja == null) {
+                        $jamkerja = Detailsetjamkerjabydept::join('presensi_jamkerja_bydept', 'presensi_jamkerja_bydept_detail.kode_jk_dept', '=', 'presensi_jamkerja_bydept.kode_jk_dept')
+                            ->join('presensi_jamkerja', 'presensi_jamkerja_bydept_detail.kode_jam_kerja', '=', 'presensi_jamkerja.kode_jam_kerja')
+                            ->where('kode_dept', $kode_dept)
+                            ->where('kode_cabang', $izincuti->kode_cabang)
+                            ->where('hari', $namahari)->first();
+                    }
+
+                    if ($jamkerja == null) {
+                        $error .= 'Jam Kerja pada Tanggal ' . $dari . ' Belum Di Set! <br>';
+                    } else {
+                        // dd($request->all());
+                        // dd(isset($request->approve));
                         $presensi = Presensi::create([
                             'nik' => $nik,
                             'tanggal' => $dari,
@@ -265,19 +270,15 @@ class IzincutiController extends Controller
                             'id_presensi' => $presensi->id,
                             'kode_izin_cuti' => $kode_izin_cuti,
                         ]);
-
-                        Izincuti::where('kode_izin_cuti', $kode_izin_cuti)->update([
-                            'status' => 1
-                        ]);
-                    } else {
-                        Izincuti::where('kode_izin_cuti', $kode_izin_cuti)->update([
-                            'status' => 2
-                        ]);
                     }
+
+
+                    $dari = date('Y-m-d', strtotime($dari . ' +1 day'));
                 }
-
-
-                $dari = date('Y-m-d', strtotime($dari . ' +1 day'));
+            } else {
+                Izincuti::where('kode_izin_cuti', $kode_izin_cuti)->update([
+                    'status' => 2
+                ]);
             }
             if (!empty($error)) {
                 DB::rollBack();

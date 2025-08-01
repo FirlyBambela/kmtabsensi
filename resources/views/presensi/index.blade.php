@@ -14,25 +14,23 @@
                 <div class="row">
                     <div class="col-12">
                         <form action="{{ route('presensi.index') }}">
-                            <x-input-with-icon label="Tanggal" value="{{ Request('tanggal') }}" name="tanggal"
-                                icon="ti ti-calendar" datepicker="flatpickr-date" />
+                            <x-input-with-icon label="Tanggal" value="{{ Request('tanggal') }}" name="tanggal" icon="ti ti-calendar"
+                                datepicker="flatpickr-date" />
                             <div class="row">
                                 <div class="col-lg-12 col-sm-12 col-md-12">
-                                    <x-select label="Cabang" name="kode_cabang" :data="$cabang" key="kode_cabang"
-                                        textShow="nama_cabang" selected="{{ Request('kode_cabang') }}" upperCase="true"
-                                        select2="select2Kodecabangsearch" />
+                                    <x-select label="Cabang" name="kode_cabang" :data="$cabang" key="kode_cabang" textShow="nama_cabang"
+                                        selected="{{ Request('kode_cabang') }}" upperCase="true" select2="select2Kodecabangsearch" />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-12 col-sm-12 col-md-12">
-                                    <x-input-with-icon label="Cari Nama Karyawan" value="{{ Request('nama_karyawan') }}"
-                                        name="nama_karyawan" icon="ti ti-search" />
+                                    <x-input-with-icon label="Cari Nama Karyawan" value="{{ Request('nama_karyawan') }}" name="nama_karyawan"
+                                        icon="ti ti-search" />
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col">
-                                    <button class="btn btn-primary w-100"><i
-                                            class="ti ti-icons ti-search me-1"></i>Cari</button>
+                                    <button class="btn btn-primary w-100"><i class="ti ti-icons ti-search me-1"></i>Cari</button>
                                 </div>
                             </div>
                         </form>
@@ -49,6 +47,7 @@
                                         <th>Dept</th>
                                         <th>Cbg</th>
                                         <th>Jam Kerja</th>
+                                        <th>Status</th>
                                         <th class="text-center">Jam Masuk</th>
                                         <th class="text-center">Jam Pulang</th>
                                         <th class="text-center">Status</th>
@@ -57,15 +56,13 @@
                                         <th>Denda</th>
                                         <th>POT. JAM</th>
                                         {{-- <th class="text-center">Total</th> --}}
-                                        <th class="text-center">Aksi</th>
+                                        <th class="text-center">#</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($karyawan as $d)
                                         @php
-                                            $tanggal_presensi = !empty(Request('tanggal'))
-                                                ? Request('tanggal')
-                                                : date('Y-m-d');
+                                            $tanggal_presensi = !empty(Request('tanggal')) ? Request('tanggal') : date('Y-m-d');
                                             $jam_masuk = $tanggal_presensi . ' ' . $d->jam_masuk;
                                             $terlambat = hitungjamterlambat($d->jam_in, $jam_masuk);
                                             $potongan_tidak_hadir = $d->status == 'a' ? $d->total_jam : 0;
@@ -104,9 +101,23 @@
                                             <td>{{ $d->kode_cabang }}</td>
                                             <td>
                                                 @if ($d->kode_jam_kerja != null)
-                                                    {{ $d->nama_jam_kerja }} {{ date('H:i', strtotime($d->jam_masuk)) }}
-                                                    -
+                                                    {{ $d->nama_jam_kerja }} {{ date('H:i', strtotime($d->jam_masuk)) }} -
                                                     {{ date('H:i', strtotime($d->jam_pulang)) }}
+                                                @else
+                                                    <i class="ti ti-hourglass-low text-warning"></i>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($d->status == 'h')
+                                                    <span class="badge bg-success">H</span>
+                                                @elseif($d->status == 'i')
+                                                    <span class="badge bg-info">I</span>
+                                                @elseif($d->status == 's')
+                                                    <span class="badge bg-warning">S</span>
+                                                @elseif($d->status == 'a')
+                                                    <span class="badge bg-danger">A</span>
+                                                @elseif($d->status == 'c')
+                                                    <span class="badge bg-primary">C</span>
                                                 @else
                                                     <i class="ti ti-hourglass-low text-warning"></i>
                                                 @endif
@@ -117,8 +128,8 @@
                                                         @if (!empty($d->foto_in))
                                                             @if (Storage::disk('public')->exists('/uploads/absensi/' . $d->foto_in))
                                                                 <div class="avatar avatar-xs">
-                                                                    <img src="{{ url('/storage/uploads/absensi/' . $d->foto_in) }}"
-                                                                        alt="" class="rounded-circle">
+                                                                    <img src="{{ url('/storage/uploads/absensi/' . $d->foto_in) }}" alt=""
+                                                                        class="rounded-circle">
                                                                 </div>
                                                             @else
                                                                 <div class="avatar avatar-xs">
@@ -129,8 +140,7 @@
                                                         @else
                                                             <i class="ti ti-fingerprint"></i>
                                                         @endif
-                                                        <a href="#" class="btnShowpresensi_in"
-                                                            id="{{ $d->id }}" status="in">
+                                                        <a href="#" class="btnShowpresensi_in" id="{{ $d->id }}" status="in">
                                                             {{ date('H:i', strtotime($d->jam_in)) }}
                                                         </a>
                                                         <span class="text-danger">
@@ -149,8 +159,8 @@
                                                         @if (!empty($d->foto_out))
                                                             @if (Storage::disk('public')->exists('/uploads/absensi/' . $d->foto_out))
                                                                 <div class="avatar avatar-xs">
-                                                                    <img src="{{ url('/storage/uploads/absensi/' . $d->foto_out) }}"
-                                                                        alt="" class="rounded-circle">
+                                                                    <img src="{{ url('/storage/uploads/absensi/' . $d->foto_out) }}" alt=""
+                                                                        class="rounded-circle">
                                                                 </div>
                                                             @else
                                                                 <div class="avatar avatar-xs">
@@ -161,8 +171,7 @@
                                                         @else
                                                             <i class="ti ti-fingerprint"></i>
                                                         @endif
-                                                        <a href="#" class="btnShowpresensi_out"
-                                                            id="{{ $d->id }}" status="out">
+                                                        <a href="#" class="btnShowpresensi_out" id="{{ $d->id }}" status="out">
                                                             {{ date('H:i', strtotime($d->jam_out)) }}
                                                         </a>
                                                         <span class="text-danger">
@@ -198,8 +207,7 @@
                                             </td>
                                             <td class="text-center">
                                                 @php
-                                                    $total_potongan_jam =
-                                                        $pulangcepat + $potongan_jam_terlambat + $potongan_tidak_hadir;
+                                                    $total_potongan_jam = $pulangcepat + $potongan_jam_terlambat + $potongan_tidak_hadir;
                                                 @endphp
                                                 @if ($total_potongan_jam > 0)
                                                     <span class="badge bg-danger">
@@ -210,14 +218,12 @@
                                             </td>
                                             <td>
                                                 <div class="d-flex">
-                                                    <a href="#" class="me-1 koreksiPresensi"
-                                                        nik="{{ Crypt::encrypt($d->nik) }}"
-                                                        tanggal="{{ $tanggal_presensi }}"><i
-                                                            class="ti ti-edit text-success"></i></a>
+                                                    <a href="#" class="me-1 koreksiPresensi" nik="{{ Crypt::encrypt($d->nik) }}"
+                                                        tanggal="{{ $tanggal_presensi }}"><i class="ti ti-edit text-success"></i></a>
 
                                                     <a href="#" class="btngetDatamesin" pin="{{ $d->pin }}"
-                                                        tanggal="{{ !empty(Request('tanggal')) ? Request('tanggal') : date('Y-m-d') }}">
-                                                        <i class="ti ti-device-desktop text-primary"></i>
+                                                        tanggal="{{ !empty(Request('tanggal')) ? Request('tanggal') : date('Y-m-d') }}"> <i
+                                                            class="ti ti-device-desktop text-primary"></i>
                                                     </a>
                                                 </div>
                                             </td>
