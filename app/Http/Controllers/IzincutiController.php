@@ -105,15 +105,21 @@ class IzincutiController extends Controller
         try {
             $cek_izin_absen = Izinabsen::where('nik', $nik)
                 ->whereBetween('dari', [$request->dari, $request->sampai])
-                ->orWhereBetween('sampai', [$request->dari, $request->sampai])->first();
+                ->orWhereBetween('sampai', [$request->dari, $request->sampai])
+                ->where('nik', $nik)
+                ->first();
 
             $cek_izin_sakit = Izinsakit::where('nik', $nik)
                 ->whereBetween('dari', [$request->dari, $request->sampai])
-                ->orWhereBetween('sampai', [$request->dari, $request->sampai])->first();
+                ->orWhereBetween('sampai', [$request->dari, $request->sampai])
+                ->where('nik', $nik)
+                ->first();
 
             $cek_izin_cuti = Izincuti::where('nik', $nik)
                 ->whereBetween('dari', [$request->dari, $request->sampai])
-                ->orWhereBetween('sampai', [$request->dari, $request->sampai])->first();
+                ->orWhereBetween('sampai', [$request->dari, $request->sampai])
+                ->where('nik', $nik)
+                ->first();
 
             if ($cek_izin_absen) {
                 return Redirect::back()->with(messageError('Anda Sudah Mengajukan Izin Absen/Sakit/Cuti Pada Rentang Tanggal Tersebut!'));

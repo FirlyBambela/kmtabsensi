@@ -203,14 +203,7 @@
                             <span class="switch-right">No</span>
                         </label>
                     </div>
-                    <label for="" style="font-weight: 600" class="form-label">Batasi Absen</label>
-                    <div class="checkbox-wrapper-55">
-                        <label class="rocker rocker-small">
-                            <input type="checkbox" name="batasi_absen" @checked($setting->batasi_absen ?? false)>
-                            <span class="switch-left">Yes</span>
-                            <span class="switch-right">No</span>
-                        </label>
-                    </div>
+
                     <label for="" style="font-weight: 600" class="form-label">Multi Lokasi</label>
                     <div class="checkbox-wrapper-55">
                         <label class="rocker rocker-small">
@@ -228,8 +221,28 @@
                             <span class="switch-right">No</span>
                         </label>
                     </div>
+                    <label for="" style="font-weight: 600" class="form-label">Batasi Absen</label>
+                    <div class="checkbox-wrapper-55">
+                        <label class="rocker rocker-small">
+                            <input type="checkbox" name="batasi_absen" @checked($setting->batasi_absen ?? false)>
+                            <span class="switch-left">Yes</span>
+                            <span class="switch-right">No</span>
+                        </label>
+                    </div>
                     <x-input-with-icon-label label="Batas Jam Absen (Dalam Jam)" name="batas_jam_absen"
                         icon="ti ti-clock" :value="$setting->batas_jam_absen ?? ''" />
+                    <label for="" style="font-weight: 600" class="form-label">Batasi Hari Izin</label>
+                    <div class="checkbox-wrapper-55">
+                        <label class="rocker rocker-small">
+                            <input type="checkbox" name="batasi_hari_izin" @checked($setting->batasi_hari_izin ?? false)>
+                            <span class="switch-left">Yes</span>
+                            <span class="switch-right">No</span>
+                        </label>
+                    </div>
+                    <x-input-with-icon-label label="Batasi Hari Izin (Dalam Hari)" name="jml_hari_izin_max"
+                        icon="ti ti-clock" :value="$setting->jml_hari_izin_max ?? ''" />
+                    <x-input-with-icon-label label="Batas Presensi Lintas Hari" name="batas_presensi_lintashari"
+                        icon="ti ti-clock" :value="$setting->batas_presensi_lintashari ?? ''" />
                     <x-input-with-icon-label label="Cloud Id" name="cloud_id" icon="ti ti-cloud" :value="$setting->cloud_id ?? ''" />
                     <x-input-with-icon-label label="API Key" name="api_key" icon="ti ti-key" :value="$setting->api_key ?? ''" />
                     <x-input-with-icon-label label="Domain Email (contoh: adamadifa.site)" name="domain_email"
@@ -261,6 +274,16 @@
         </div>
     </div>
 </div>
-
-
 @endsection
+@push('myscript')
+<script>
+    $(document).ready(function() {
+        $('#batas_presensi_lintashari').flatpickr({
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: 'H:i',
+            time_24hr: true,
+        });
+    });
+</script>
+@endpush

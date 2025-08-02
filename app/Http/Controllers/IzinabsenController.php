@@ -10,6 +10,7 @@ use App\Models\Izinabsen;
 use App\Models\Izincuti;
 use App\Models\Izinsakit;
 use App\Models\Karyawan;
+use App\Models\Pengaturanumum;
 use App\Models\Presensi;
 use App\Models\Setjamkerjabydate;
 use App\Models\Setjamkerjabyday;
@@ -98,7 +99,7 @@ class IzinabsenController extends Controller
         $user = User::findorfail(auth()->user()->id);
         $userkaryawan = Userkaryawan::where('id_user', $user->id)->first();
         $role = $user->getRoleNames()->first();
-
+        $general_setting = Pengaturanumum::where('id', 1)->first();
         $nik = $user->hasRole('karyawan') ? $userkaryawan->nik : $request->nik;
 
         if ($role == 'karyawan') {
@@ -119,21 +120,30 @@ class IzinabsenController extends Controller
         DB::beginTransaction();
         try {
             $jmlhari = hitungHari($request->dari, $request->sampai);
-            if ($jmlhari > 3) {
-                return Redirect::back()->with(messageError('Tidak Boleh Lebih dari 3 Hari!'));
+            $batasi_hari_izin = $general_setting->batasi_hari_izin;
+            $jml_hari_izin_max = $general_setting->jml_hari_izin_max;
+
+            if ($jmlhari > $jml_hari_izin_max && $batasi_hari_izin == 1) {
+                return Redirect::back()->with(messageError('Tidak Boleh Lebih dari ' . $jml_hari_izin_max . ' Hari!'));
             }
 
             $cek_izin_absen = Izinabsen::where('nik', $nik)
                 ->whereBetween('dari', [$request->dari, $request->sampai])
-                ->orWhereBetween('sampai', [$request->dari, $request->sampai])->first();
+                ->orWhereBetween('sampai', [$request->dari, $request->sampai])
+                ->where('nik', $nik)
+                ->first();
 
             $cek_izin_sakit = Izinsakit::where('nik', $nik)
                 ->whereBetween('dari', [$request->dari, $request->sampai])
-                ->orWhereBetween('sampai', [$request->dari, $request->sampai])->first();
+                ->orWhereBetween('sampai', [$request->dari, $request->sampai])
+                ->where('nik', $nik)
+                ->first();
 
             $cek_izin_cuti = Izincuti::where('nik', $nik)
                 ->whereBetween('dari', [$request->dari, $request->sampai])
-                ->orWhereBetween('sampai', [$request->dari, $request->sampai])->first();
+                ->orWhereBetween('sampai', [$request->dari, $request->sampai])
+                ->where('nik', $nik)
+                ->first();
 
             if ($cek_izin_absen) {
                 return Redirect::back()->with(messageError('Anda Sudah Mengajukan Izin Absen/Sakit/Cuti Pada Rentang Tanggal Tersebut!'));

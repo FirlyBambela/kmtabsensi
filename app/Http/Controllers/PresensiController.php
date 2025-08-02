@@ -106,6 +106,7 @@ class PresensiController extends Controller
         $user = User::where('id', auth()->user()->id)->first();
         $userkaryawan = Userkaryawan::where('id_user', $user->id)->first();
         $karyawan = Karyawan::where('nik', $userkaryawan->nik)->first();
+        $general_setting = Pengaturanumum::where('id', 1)->first();
 
         //Cek Lokasi Kantor
         $lokasi_kantor = Cabang::where('kode_cabang', $karyawan->kode_cabang)->first();
@@ -122,7 +123,7 @@ class PresensiController extends Controller
         $ceklintashari_presensi = $cekpresensi_sebelumnya != null  ? $cekpresensi_sebelumnya->lintashari : 0;
 
         if ($ceklintashari_presensi == 1) {
-            if ($jamsekarang < "08:00") {
+            if ($jamsekarang < $general_setting->batas_presensi_lintashari) {
                 $hariini = $tgl_sebelumnya;
             }
         }

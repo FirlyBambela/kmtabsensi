@@ -55,6 +55,9 @@ class GeneralsettingController extends Controller
                 'domain_wa_gateway' => $request->domain_wa_gateway,
                 'wa_api_key' => $request->wa_api_key,
                 'notifikasi_wa' => $request->has('notifikasi_wa') ? true : false,
+                'batasi_hari_izin' => $request->has('batasi_hari_izin') ? true : false,
+                'jml_hari_izin_max' => $request->jml_hari_izin_max,
+                'batas_presensi_lintashari' => $request->batas_presensi_lintashari,
             ];
 
             if ($request->hasFile('logo')) {
