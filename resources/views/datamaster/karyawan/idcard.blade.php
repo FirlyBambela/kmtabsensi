@@ -173,7 +173,7 @@
                 <div class="idcard-name-modern">{{ textUpperCase($karyawan->nama_karyawan) }}</div>
                 <div class="idcard-position-modern">{{ $karyawan->nama_jabatan }}</div>
                 <div class="idcard-info-modern"><i class="fa-solid fa-id-badge"></i> ID: {{ $karyawan->nik }}</div>
-                <div class="idcard-info-modern"><i class="fa-solid fa-user"></i> Ruangan: {{ $karyawan->nama_dept }}
+                <div class="idcard-info-modern"><i class="fa-solid fa-user"></i> DEPT: {{ $karyawan->nama_dept }}
                 </div>
                 <div class="idcard-info-modern"><i class="fa-solid fa-calendar-plus"></i> TMT:
                     {{ date('d-m-Y', strtotime($karyawan->tanggal_masuk)) }}</div>
