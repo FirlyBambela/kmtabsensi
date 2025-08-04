@@ -22,7 +22,7 @@
         }
 
         .idcard-header-modern {
-            background: linear-gradient(120deg, #122b23 80%, #122b23 100%);
+            background: linear-gradient(120deg, #0d5039 80%, #0d5039 100%);
             height: 120px;
             position: relative;
             display: flex;
@@ -63,14 +63,14 @@
         .idcard-name-modern {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #32745e;
+            color: #0d5039;
             letter-spacing: 1px;
             margin-bottom: 2px;
         }
 
         .idcard-position-modern {
             font-size: 1.08rem;
-            color: #58907D;
+            color: #0d5039;
             font-weight: 500;
             margin-bottom: 20px;
         }
@@ -85,7 +85,7 @@
 
         .idcard-info-modern i {
             font-size: 1.13rem;
-            color: #32745e;
+            color: #0d5039;
             margin-right: 10px;
             width: 22px;
             text-align: center;
@@ -103,7 +103,7 @@
         .idcard-footer-modern {
             text-align: center;
             font-size: 1.01rem;
-            color: #32745e;
+            color: #0d5039;
             font-weight: 500;
             margin-bottom: 18px;
             letter-spacing: 0.5px;
