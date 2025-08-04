@@ -27,7 +27,7 @@
     $(function() {
         const form = $('#formIzin');
         const batasi_hari_izin = "{{ $general_setting->batasi_hari_izin }}";
-        // alert(batasi_hari_izin);
+        //alert(batasi_hari_izin);
         const jml_hari_izin_max = "{{ $general_setting->jml_hari_izin_max }}";
         $(".flatpickr-date").flatpickr();
         const select2Nik = $('.select2Nik');
@@ -110,12 +110,10 @@
                     }
                 });
                 return false;
-            } else if (hitungHari(dari, sampai) > parseInt(jml_hari_izin_max) && batasi_hari_izin ==
-                1) {
+            } else if (hitungHari(dari, sampai) > parseInt(jml_hari_izin_max) && batasi_hari_izin == 1) {
                 Swal.fire({
                     title: "Oops!",
-                    text: 'Periode Izin Tidak Boleh Lebih Dari ' + jml_hari_izin_max +
-                        ' Hari !',
+                    text: 'Periode Izin Tidak Boleh Lebih Dari ' + jml_hari_izin_max + ' Hari !',
                     icon: "warning",
                     showConfirmButton: true,
                     didClose: () => {

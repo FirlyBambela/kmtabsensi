@@ -81,6 +81,9 @@
             }
         });
 
+        const batasi_hari_izin = "{{ $general_setting->batasi_hari_izin }}";
+        const jml_hari_izin_max = "{{ $general_setting->jml_hari_izin_max }}";
+
         function hitungHari(startDate, endDate) {
 
             if (startDate && endDate) {
@@ -142,10 +145,10 @@
                     }
                 });
                 return false;
-            } else if (hitungHari(dari, sampai) > 3) {
+            } else if (hitungHari(dari, sampai) > jml_hari_izin_max && batasi_hari_izin == 1) {
                 Swal.fire({
                     title: "Oops!",
-                    text: 'Periode Izin Tidak Boleh Lebih Dari 3 Hari !',
+                    text: 'Periode Izin Tidak Boleh Lebih Dari ' + jml_hari_izin_max + ' Hari !',
                     icon: "warning",
                     showConfirmButton: true,
                     didClose: () => {

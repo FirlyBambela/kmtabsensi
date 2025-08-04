@@ -49,6 +49,7 @@ class GeneralsettingController extends Controller
                 'batasi_absen' => $request->has('batasi_absen') ? true : false,
                 'multi_lokasi' => $request->has('multi_lokasi') ? true : false,
                 'batas_jam_absen' => $request->batas_jam_absen,
+                'batas_jam_absen_pulang' => $request->batas_jam_absen_pulang,
                 'cloud_id' => $request->cloud_id,
                 'api_key' => $request->api_key,
                 'domain_email' => $request->domain_email,

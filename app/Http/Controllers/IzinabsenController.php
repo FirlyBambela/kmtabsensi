@@ -145,6 +145,7 @@ class IzinabsenController extends Controller
                 ->where('nik', $nik)
                 ->first();
 
+            //dd($nik . "-" . $cek_izin_absen . "-" . $cek_izin_sakit . "-" . $cek_izin_cuti);
             if ($cek_izin_absen) {
                 return Redirect::back()->with(messageError('Anda Sudah Mengajukan Izin Absen/Sakit/Cuti Pada Rentang Tanggal Tersebut!'));
             } else if ($cek_izin_sakit) {

@@ -151,7 +151,11 @@ class IzincutiController extends Controller
 
             Izincuti::create($dataizincuti);
             DB::commit();
-            return Redirect::back()->with(messageSuccess('Data Berhasil Disimpan'));
+            if ($role == 'karyawan') {
+                return Redirect::route('izincuti.index')->with(messageSuccess('Data Berhasil Disimpan'));
+            } else {
+                return Redirect::back()->with(messageSuccess('Data Berhasil Disimpan'));
+            }
         } catch (\Exception $e) {
             DB::rollBack();
             return Redirect::back()->with(messageError($e->getMessage()));
@@ -337,5 +341,30 @@ class IzincutiController extends Controller
 
         $data['izincuti'] = $izincuti;
         return view('izincuti.show', $data);
+    }
+
+    public function getsisaharicuti(Request $request)
+    {
+        $user = User::findorfail(auth()->user()->id);
+        $role = $user->getRoleNames()->first();
+        $userkaryawan = Userkaryawan::where('id_user', $user->id)->first();
+        $nik = $user->hasRole('karyawan') ? $userkaryawan->nik : $request->nik;
+        $tanggal = $request->tanggal ?? date('Y-m-d');
+        $tahun_cuti = date('Y', strtotime($tanggal));
+        $kode_cuti = $request->kode_cuti;
+        $cuti = Cuti::where('kode_cuti', $kode_cuti)->first();
+        $jml_hari_max = $cuti->jumlah_hari;
+        if ($cuti->kode_cuti == "C01") {
+            $cek_cuti_dipakai = Approveizincuti::join('presensi', 'presensi_izincuti_approve.id_presensi', '=', 'presensi.id')
+                ->where('presensi.nik', $nik)
+                ->whereRaw("YEAR(presensi.tanggal) = $tahun_cuti")
+                ->count();
+            $sisa_cuti = $jml_hari_max - $cek_cuti_dipakai;
+            $message = 'Sisa Cuti ' . $cuti->jenis_cuti . ' Anda Adalah ' . $sisa_cuti . ' Hari Lagi';
+        } else {
+            $sisa_cuti = $jml_hari_max;
+            $message = "Batas Maksimal Cuti " . $cuti->jenis_cuti . " Anda Adalah " . $jml_hari_max . " Hari";
+        }
+        return response()->json(['status' => true, 'sisa_cuti' => $sisa_cuti, 'message' => $message]);
     }
 }
