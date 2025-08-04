@@ -178,7 +178,7 @@
                 </div>
                 <div class="idcard-info-modern"><i class="fa-solid fa-calendar-plus"></i> TMT :
                     {{ date('d-m-Y', strtotime($karyawan->tanggal_masuk)) }}</div>
-                <div class="idcard-info-modern"><i class="fa-solid fa-phone"></i> No.HP :{{ $karyawan->no_hp }}</div>
+                <div class="idcard-info-modern"><i class="fa-solid fa-phone"></i> No.HP : {{ $karyawan->no_hp }}</div>
                 <div class="barcode-modern">
                     {!! DNS1D::getBarcodeHTML($karyawan->nik, 'C128', 2, 54) !!}
                 </div>
