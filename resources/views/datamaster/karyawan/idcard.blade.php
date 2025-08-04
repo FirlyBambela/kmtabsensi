@@ -22,7 +22,7 @@
         }
 
         .idcard-header-modern {
-            background: linear-gradient(120deg, #0f3d2e 80%, #163a2e 100%);
+            background: linear-gradient(120deg, #122b23 80%, #122b23 100%);
             height: 120px;
             position: relative;
             display: flex;
@@ -171,9 +171,9 @@
 
             <div class="idcard-body-modern">
                 <div class="idcard-name-modern">{{ textUpperCase($karyawan->nama_karyawan) }}</div>
-                <div class="idcard-position-modern">{{ $karyawan->nama_dept }}</div>
+                <div class="idcard-position-modern">{{ $karyawan->nama_jabatan }}</div>
                 <div class="idcard-info-modern"><i class="fa-solid fa-id-badge"></i> ID: {{ $karyawan->nik }}</div>
-                <div class="idcard-info-modern"><i class="fa-solid fa-user"></i> Jabatan: {{ $karyawan->nama_jabatan }}
+                <div class="idcard-info-modern"><i class="fa-solid fa-user"></i> Ruangan: {{ $karyawan->nama_dept }}
                 </div>
                 <div class="idcard-info-modern"><i class="fa-solid fa-calendar-plus"></i> Join Date:
                     {{ date('d-m-Y', strtotime($karyawan->tanggal_masuk)) }}</div>
